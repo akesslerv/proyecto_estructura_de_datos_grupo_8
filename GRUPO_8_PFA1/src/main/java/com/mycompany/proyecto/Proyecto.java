@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Dilan
+ * @author Grupo 8
  */
 public class Proyecto {
 

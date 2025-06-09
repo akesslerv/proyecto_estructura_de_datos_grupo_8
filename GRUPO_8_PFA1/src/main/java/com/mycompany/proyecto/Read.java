@@ -7,7 +7,7 @@ import java.awt.Component;
 
 /**
  *
- * @author Dilan
+ * @author Grupo 8
  */
 public class Read {
     
