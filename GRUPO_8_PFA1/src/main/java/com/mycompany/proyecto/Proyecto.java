@@ -31,17 +31,15 @@ public class Proyecto {
                     botonesMenuPrincipal[0]);
     
             switch (menuPrincipal){
-                case 0:
-                    gestionarPacientes();
-                    break;
+                case 0 -> gestionarPacientes();
         
-                case 1:
-                    break;
+                case 1 -> {
+                }
             
-                case 2:
+                case 2 -> {
                     JOptionPane.showMessageDialog(null, "¡Gracias por usar el Sistema!");
                     System.exit(0);
-                    break;
+                }
             }
         }
     }
@@ -68,24 +66,22 @@ public class Proyecto {
                     botonesSubMenu[0]);
             
             switch (subMenu){
-                case 0:
-                    break;
+                case 0 -> {
+                }
         
-                case 1:
-                    break;
+                case 1 -> {
+                }
             
-                case 2:
-                    break;
+                case 2 -> {
+                }
                 
-                case 3:
-                    break;
+                case 3 -> {
+                }
                 
-                case 4:
-                    break;
+                case 4 -> {
+                }
                     
-                case 5:
-                    bucle = false;
-                    break;  
+                case 5 -> bucle = false;  
             }
         }
     }  
