@@ -1,8 +1,6 @@
 package com.mycompany.proyecto;
 
 import javax.swing.JOptionPane;
-import javax.swing.Icon;
-import java.awt.Component;
 
 /**
  *

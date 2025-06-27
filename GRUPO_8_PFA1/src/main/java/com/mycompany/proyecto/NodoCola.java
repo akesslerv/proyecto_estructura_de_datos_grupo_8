@@ -1,5 +1,8 @@
 package com.mycompany.proyecto;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -7,12 +10,13 @@ package com.mycompany.proyecto;
 
 /**
  *
- * @author barre
+ * @author Dilan
  */
 public class NodoCola {
     private String nombre;
     private String cedula;
     private String numeroFicha;
+    private Timestamp fecha;
     private NodoCola siguiente;
     
     public NodoCola() {
@@ -27,6 +31,7 @@ public class NodoCola {
         this.nombre = nombre;
         this.cedula = cedula;
         this.numeroFicha = numeroFicha;
+        this.fecha = Timestamp.valueOf(LocalDateTime.now());
     }
 
     public NodoCola getSiguiente() {
@@ -59,6 +64,14 @@ public class NodoCola {
 
     public void setNumeroFicha(String numeroFicha) {
         this.numeroFicha = numeroFicha;
+    }
+
+    public Timestamp getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Timestamp fecha) {
+        this.fecha = fecha;
     }
     
 }

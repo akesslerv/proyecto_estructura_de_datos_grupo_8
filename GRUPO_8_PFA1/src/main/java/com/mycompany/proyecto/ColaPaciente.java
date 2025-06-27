@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author barre
+ * @author Dilan
  */
 public class ColaPaciente extends ColaBase{
     
@@ -17,7 +17,8 @@ public class ColaPaciente extends ColaBase{
         while (aux != null){
             JOptionPane.showMessageDialog(null, "Nombre: "+aux.getNombre()
                     +"\nCédula: "+aux.getCedula()
-                    +"\nNúmero de Ficha: "+aux.getNumeroFicha());
+                    +"\nNúmero de Ficha: "+aux.getNumeroFicha()
+                    +"\nFecha de creación: "+aux.getFecha());
             aux = aux.getSiguiente();
         }
     }
