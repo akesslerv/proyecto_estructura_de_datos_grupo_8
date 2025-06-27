@@ -2,30 +2,13 @@ package com.mycompany.proyecto;
 
 import javax.swing.JOptionPane;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import java.awt.Component;
 
 /**
  *
- * @author Grupo 8
+ * @author Dilan
  */
 public class Read {
-    
-    public static int readOption(Component posicion, String mensaje, 
-            String titulo, int tipoOpcion, int tipoMensaje, 
-            Icon icono, Object[] botones, Object inicio){
-        int seleccion = -1;
-        while (seleccion == -1){
-            seleccion = JOptionPane.showOptionDialog(
-                    null, mensaje, titulo, tipoOpcion, tipoMensaje, 
-                    null, botones, inicio);
-        
-            if (seleccion == -1){
-                JOptionPane.showMessageDialog(null, "Debe seleccionar una opción");
-            }
-        }
-        return seleccion;
-    }
     
     public static String readString(String mensaje) {
         String input = "";

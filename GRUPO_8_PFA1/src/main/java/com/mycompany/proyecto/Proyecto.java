@@ -1,19 +1,18 @@
 package com.mycompany.proyecto;
 
 import javax.swing.JOptionPane;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+
 
 /**
  *
- * @author Grupo 8
+ * @author Dilan
  */
 public class Proyecto {
-
+    
+    static ColaPaciente ColaRegular = new ColaPaciente();
+    static ColaPaciente ColaPreferencial = new ColaPaciente();
+    
     public static void main(String[] args) {
-        Icon icono = new ImageIcon(Read.class.getResource(
-                "/imagenes/Logo.jpg"));
-        
         String [] botonesMenuPrincipal = { 
         "Gestionar Llegada de Pacientes",
         "Ayuda",
@@ -21,25 +20,27 @@ public class Proyecto {
         };
         
         while (true){
-            int menuPrincipal = Read.readOption(null,
+            int menuPrincipal = JOptionPane.showOptionDialog(null,
                     "Seleccione una Opción", 
                     "Hospital Su Salud", 
                     JOptionPane.DEFAULT_OPTION, 
-                    JOptionPane.PLAIN_MESSAGE, 
-                    icono, 
+                    JOptionPane.INFORMATION_MESSAGE, 
+                    null, 
                     botonesMenuPrincipal, 
                     botonesMenuPrincipal[0]);
     
             switch (menuPrincipal){
-                case 0 -> gestionarPacientes();
+                case 0:
+                    gestionarPacientes();
+                    break;
         
-                case 1 -> {
-                }
+                case 1:
+                    break;
             
-                case 2 -> {
+                case 2:
                     JOptionPane.showMessageDialog(null, "¡Gracias por usar el Sistema!");
                     System.exit(0);
-                }
+                    break;
             }
         }
     }
@@ -56,7 +57,7 @@ public class Proyecto {
         
         boolean bucle = true;
         while (bucle){
-            int subMenu = Read.readOption(null,
+            int subMenu = JOptionPane.showOptionDialog(null,
                     "Seleccione una Opción", 
                     "Hospital Su Salud", 
                     JOptionPane.DEFAULT_OPTION, 
@@ -66,23 +67,67 @@ public class Proyecto {
                     botonesSubMenu[0]);
             
             switch (subMenu){
-                case 0 -> {
-                }
+                case 0:
+                    selecionarFicha();
+                    break;
         
-                case 1 -> {
-                }
+                case 1:
+                    break;
             
-                case 2 -> {
-                }
+                case 2:
+                    break;
                 
-                case 3 -> {
-                }
+                case 3:
+                    break;
                 
-                case 4 -> {
-                }
+                case 4:
+                    break;
                     
-                case 5 -> bucle = false;  
+                case 5:
+                    bucle = false;
+                    break;  
             }
         }
-    }  
+    }
+    
+    public static void selecionarFicha(){
+        String [] botonesSelecFicha = {
+                    "Paciente Regular",
+                    "Paciente Preferencial",
+                    "Regresar"
+                    };
+        
+        int subSelecFicha = JOptionPane.showOptionDialog(null,
+                    "Seleccione el tipo de Paciente", 
+                    "Hospital Su Salud", 
+                    JOptionPane.DEFAULT_OPTION, 
+                    JOptionPane.INFORMATION_MESSAGE, 
+                    null, 
+                    botonesSelecFicha, 
+                    botonesSelecFicha[0]);
+        
+        boolean bucle = true;
+        String prefijo;
+        String nombre = Read.readString("Ingrese el nombre del Paciente");
+        String cedula = Read.readString("Ingrese la cédula del Paciente");
+        while (bucle){
+            switch(subSelecFicha){
+                case 0:
+                    prefijo = "R";
+                    ColaRegular.encolar(prefijo, nombre, cedula);
+                    bucle = false;
+                    break;
+                 
+                case 1:
+                    prefijo = "P";
+                    ColaPreferencial.encolar(prefijo, nombre, cedula);
+                    bucle = false;
+                    break;
+                    
+                case 2:
+                    bucle = false;
+                    break;
+            }
+        }
+    }
 }
