@@ -9,9 +9,13 @@ import javax.swing.JOptionPane;
  */
 public class Proyecto {
     
+    //gestion de colas
     static ColaPaciente ColaRegular = new ColaPaciente();
     static ColaPaciente ColaPreferencial = new ColaPaciente();
-    
+    static ColaPaciente ColaAtendidos = new ColaPaciente();
+    static PilaQuejas PilaQuejas = new PilaQuejas();
+    int ContadorPreferenciales = 0;
+
     public static void main(String[] args) {
         String [] botonesMenuPrincipal = { 
         "Gestionar Llegada de Pacientes",
@@ -72,15 +76,19 @@ public class Proyecto {
                     break;
         
                 case 1:
+                    AtenderPaciente.atenderPaciente();
                     break;
             
                 case 2:
+                     GestionColas.abandonarCola(ColaPreferencial, ColaRegular, PilaQuejas);
                     break;
                 
                 case 3:
+                     GestionColas.mostrarFichasPendientes(ColaPreferencial, ColaRegular);
                     break;
                 
                 case 4:
+                    GestionColas.mostrarQuejasRecibidas(PilaQuejas);
                     break;
                     
                 case 5:
