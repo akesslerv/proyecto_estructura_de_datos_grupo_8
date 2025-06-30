@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Dilan
+ * @author Grupo 8
  */
 public class Proyecto {
     
