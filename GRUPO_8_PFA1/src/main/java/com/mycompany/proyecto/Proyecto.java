@@ -39,6 +39,7 @@ public class Proyecto {
                     break;
         
                 case 1:
+                    Ayuda.mostrarAyuda();
                     break;
             
                 case 2:
