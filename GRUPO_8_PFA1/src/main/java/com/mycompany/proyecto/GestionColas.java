@@ -6,9 +6,18 @@ package com.mycompany.proyecto;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
+/**
+ * Clase que gestiona operaciones relacionadas con las colas de pacientes.
+ * Incluye abandono de cola, visualización de fichas pendientes y quejas recibidas.
+ */
+
 public class GestionColas {
 
-    //Metodo de abandono de cola
+     /**
+     * Permite a un paciente abandonar la cola sin ser atendido.
+     * Si se encuentra la ficha, se elimina de la cola correspondiente
+     * y se registra una queja.
+     */
     public static void abandonarCola(ColaPaciente preferencial, ColaPaciente regular, PilaQuejas pila) {
         String fichaBuscar = Read.readString("Ingrese el numero de ficha del paciente que desea abandonar la cola (Ej: R3 o P2)");
 
@@ -24,7 +33,9 @@ public class GestionColas {
         }
     }
 
-    //Metodo de eliminacion de la cola
+    /**
+     * Elimina un paciente de la cola y registra la queja si coincide la ficha.
+     */
     private static boolean eliminarDeCola(ColaPaciente cola, String ficha, PilaQuejas pila) {
         NodoCola actual = cola.getFrente();
         NodoCola anterior = null;
@@ -60,7 +71,10 @@ public class GestionColas {
         return false;
     }
 
-    //Metodo de fichas pendientes
+    /**
+     * Muestra una lista de todas las fichas pendientes en ambas colas (preferencial y regular).
+     *
+     */
     public static void mostrarFichasPendientes(ColaPaciente preferencial, ColaPaciente regular) {
         StringBuilder sb = new StringBuilder("📋 Fichas Pendientes:\n\n");
 
@@ -83,7 +97,10 @@ public class GestionColas {
         JOptionPane.showMessageDialog(null, sb.toString());
     }
 
-    //metodo para mostrar las quejas recibidas
+    
+    /**
+     * Muestra todas las quejas registradas por los pacientes que abandonaron la cola.
+     */
     public static void mostrarQuejasRecibidas(PilaQuejas pila) {
         if (pila.estaVacia()) {
             JOptionPane.showMessageDialog(null, "No hay quejas registradas.");

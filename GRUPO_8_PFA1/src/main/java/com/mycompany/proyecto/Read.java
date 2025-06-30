@@ -1,10 +1,10 @@
 package com.mycompany.proyecto;
-
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Dilan
+ * Clase para realizar lecturas de datos desde cuadros de diálogo.
+ * Contiene métodos para leer cadenas, enteros y números decimales
+ * usando JOptionPane.
  */
 public class Read {
     

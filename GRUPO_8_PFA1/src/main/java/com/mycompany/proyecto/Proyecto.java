@@ -2,11 +2,17 @@ package com.mycompany.proyecto;
 
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author Grupo 8
  */
+
+/**
+ * Clase principal del sistema "Hospital Su Salud".
+ * Gestiona el menú principal y las operaciones relacionadas con la atención de pacientes,
+ * selección de fichas, colas, quejas y visualización de datos.
+ */
+
 public class Proyecto {
     
     //gestion de colas
@@ -16,6 +22,12 @@ public class Proyecto {
     static PilaQuejas PilaQuejas = new PilaQuejas();
     int ContadorPreferenciales = 0;
 
+     /**
+     * Método principal del programa.
+     * Muestra el menú principal con opciones para gestionar pacientes, ver ayuda o salir.
+     *
+     */
+    
     public static void main(String[] args) {
         String [] botonesMenuPrincipal = { 
         "Gestionar Llegada de Pacientes",
@@ -50,6 +62,11 @@ public class Proyecto {
         }
     }
     
+    /**
+     * Muestra el submenú para gestionar pacientes.
+     * Incluye opciones para seleccionar ficha, atender, abandonar cola,
+     * mostrar fichas pendientes, ver quejas y regresar al menú principal.
+     */
     public static void gestionarPacientes(){
         String [] botonesSubMenu = {
             "Seleccionar Ficha",
@@ -99,6 +116,10 @@ public class Proyecto {
         }
     }
     
+     /**
+     * Permite registrar un paciente como regular o preferencial.
+     * Solicita nombre y cédula, luego asigna el tipo según opción elegida.
+     */
     public static void selecionarFicha(){
         String [] botonesSelecFicha = {
                     "Paciente Regular",

@@ -9,9 +9,11 @@ import java.time.LocalDateTime;
  */
 
 /**
- *
- * @author Dilan
+ * Clase que representa un nodo en una cola de pacientes.
+ * Contiene información personal y de control como el nombre, cédula,
+ * número de ficha, fecha de creación y enlace al siguiente nodo.
  */
+
 public class NodoCola {
     private String nombre;
     private String cedula;

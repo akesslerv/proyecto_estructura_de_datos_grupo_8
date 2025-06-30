@@ -9,6 +9,11 @@ import static com.mycompany.proyecto.Proyecto.ColaRegular;
 import static com.mycompany.proyecto.Proyecto.ColaAtendidos;
 import javax.swing.JOptionPane;
 
+/**
+ * Clase encargada de atender pacientes de acuerdo con la prioridad establecida.
+ * Atiende primero hasta 2 pacientes preferenciales por cada paciente regular.
+ */
+
 public class AtenderPaciente {
 
     private static int ContadorPreferenciales;
@@ -20,18 +25,21 @@ public class AtenderPaciente {
         }
 
         NodoCola pacienteAtendido = null;
-
+        
+        // Atender preferencial si se han atendido menos de 2 consecutivos
         if (ContadorPreferenciales < 2 && !ColaPreferencial.estaVacia()) {
             pacienteAtendido = ColaPreferencial.desencolar();
             ContadorPreferenciales++;
+        // Si no se pudo atender preferencial y hay regular disponible
         } else if (!ColaRegular.estaVacia()) {
             pacienteAtendido = ColaRegular.desencolar();
             ContadorPreferenciales = 0;
+        // Si no hay regular, seguir con preferenciales
         } else if (!ColaPreferencial.estaVacia()) {
             pacienteAtendido = ColaPreferencial.desencolar();
             ContadorPreferenciales = Math.min(ContadorPreferenciales + 1, 2);
         }
-
+        // Mostrar información del paciente y agregar a la cola de atendidos
         if (pacienteAtendido != null) {
             JOptionPane.showMessageDialog(null,
                     "Ficha #" + pacienteAtendido.getNumeroFicha()

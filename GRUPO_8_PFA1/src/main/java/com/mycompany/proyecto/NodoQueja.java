@@ -6,6 +6,10 @@ package com.mycompany.proyecto;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/**
+ * Clase que representa un nodo de queja en la pila de quejas.
+ * Contiene la información del paciente que abandonó la cola sin ser atendido.
+ */ 
 
 public class NodoQueja {
     private String nombre;

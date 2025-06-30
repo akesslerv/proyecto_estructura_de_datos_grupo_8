@@ -5,6 +5,11 @@
 package com.mycompany.proyecto;
 import javax.swing.JOptionPane;
 
+
+/**
+ * Clase que muestra una ventana con la ayuda del sistema.
+ */
+
 public class Ayuda {
     public static void mostrarAyuda() {
         String ayuda = """

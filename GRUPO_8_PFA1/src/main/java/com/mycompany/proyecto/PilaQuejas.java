@@ -3,8 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.proyecto;
-
 import javax.swing.JOptionPane;
+
+/**
+ * Clase que representa una pila de quejas de pacientes.
+ * Almacena quejas de pacientes que abandonaron la cola sin ser atendidos,
+ * utilizando una estructura tipo pila (LIFO).
+ */
 
 public class PilaQuejas {
 
