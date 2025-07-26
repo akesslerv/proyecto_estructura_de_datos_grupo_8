@@ -78,25 +78,22 @@ public class Paciente {
             String prefijo = paciente.getNumeroFicha().substring(0, 1);
             ColaAtendidos.encolar(prefijo, paciente.getNombre(), paciente.getCedula());
 
-            // Registrar en la bitácora con timestamps
-            Timestamp fechaLlegada = nodo.getFecha(); // Aquí asumo que NodoCola tiene getFecha()
+            // Aquí registras la bitácora
+            Timestamp fechaLlegada = nodo.getFecha(); // ya es Timestamp
             Timestamp fechaAtencion = new Timestamp(System.currentTimeMillis());
 
-            NodoBitacora nuevoRegistro = new NodoBitacora(
+            NodoBitacora nodoBitacora = new NodoBitacora(
                     paciente.getNumeroFicha(),
-                    fechaLlegada.getTime(), // convierte Timestamp a long
-                    fechaAtencion.getTime(),
+                    fechaLlegada,
+                    fechaAtencion,
                     paciente.getCedula(),
                     paciente.getNombre()
             );
-            Proyecto.bitacoraCitas.insertarOrdenado(nuevoRegistro);
+
+            Proyecto.bitacoraCitas.insertarOrdenado(nodoBitacora);
         }
     }
-
-    public static void mostrarBitacoraCompleta() {
-        Proyecto.bitacoraCitas.mostrarBitacora();
-    }
-
+    
     /**
      * Muestra todos los pacientes que han sido atendidos hasta el momento,
      * listados desde el más antiguo hasta el más reciente.

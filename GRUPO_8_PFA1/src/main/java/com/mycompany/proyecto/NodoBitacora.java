@@ -3,16 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.proyecto;
+import java.sql.Timestamp;
+
+/**
+ * Clase que representa un nodo en la lista de bitácora de citas.
+ * Cada nodo almacena información sobre una cita de un paciente, incluyendo
+ * número de ficha, fechas de llegada y atención, cédula y nombre del paciente,
+ * así como una referencia al siguiente nodo en la lista.
+ */
 
 public class NodoBitacora {
-    private  String numeroFicha;
-    private  long fechaLlegada;   // timestamp en milisegundos
-    private  long fechaAtencion;  // timestamp en milisegundos
-    private  String cedula;
-    private  String nombre;
+
+    private String numeroFicha;
+    private Timestamp fechaLlegada;   // timestamp en milisegundos
+    private Timestamp fechaAtencion;  // timestamp en milisegundos
+    private String cedula;
+    private String nombre;
     private NodoBitacora siguiente;
 
-    public NodoBitacora(String numeroFicha, long fechaLlegada, long fechaAtencion, String cedula, String nombre) {
+    public NodoBitacora(String numeroFicha, Timestamp fechaLlegada, Timestamp fechaAtencion, String cedula, String nombre) {
         this.numeroFicha = numeroFicha;
         this.fechaLlegada = fechaLlegada;
         this.fechaAtencion = fechaAtencion;
@@ -29,19 +38,19 @@ public class NodoBitacora {
         this.numeroFicha = numeroFicha;
     }
 
-    public long getFechaLlegada() {
+    public Timestamp getFechaLlegada() {
         return fechaLlegada;
     }
 
-    public void setFechaLlegada(long fechaLlegada) {
+    public void setFechaLlegada(Timestamp fechaLlegada) {
         this.fechaLlegada = fechaLlegada;
     }
 
-    public long getFechaAtencion() {
+    public Timestamp getFechaAtencion() {
         return fechaAtencion;
     }
 
-    public void setFechaAtencion(long fechaAtencion) {
+    public void setFechaAtencion(Timestamp fechaAtencion) {
         this.fechaAtencion = fechaAtencion;
     }
 
@@ -68,7 +77,5 @@ public class NodoBitacora {
     public void setSiguiente(NodoBitacora siguiente) {
         this.siguiente = siguiente;
     }
-    
-  
-    
+
 }

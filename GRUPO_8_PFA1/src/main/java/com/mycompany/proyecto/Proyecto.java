@@ -23,7 +23,7 @@ public class Proyecto {
     public static PilaQuejas PilaQuejas = new PilaQuejas();
 
     // Estructuras del avance 2
-    public static ListaBitacora bitacoraCitas = new ListaBitacora();
+    public static BitacoraCitas bitacoraCitas = new BitacoraCitas();
 
     /**
      * Método principal del programa.Muestra el menú principal con opciones para
@@ -55,7 +55,7 @@ public class Proyecto {
                     gestionarPacientes();
                     break;
                 case 1:
-                    Paciente.mostrarBitacora();  // Bitácora general
+                    bitacoraCitas.mostrarBitacoraSimple(); // Bitácora general
                     break;
                 case 2:
                     Paciente.mostrarBitacoraPorCedula();
@@ -147,4 +147,5 @@ public class Proyecto {
             ColaRegular.encolar(prefijo, nombre, cedula);
         }
     }
+   
 }
