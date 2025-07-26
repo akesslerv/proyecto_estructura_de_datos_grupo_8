@@ -3,33 +3,39 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.proyecto;
+
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 /**
  * Clase que gestiona operaciones relacionadas con las colas de pacientes.
- * Incluye abandono de cola, visualización de fichas pendientes y quejas recibidas.
+ * Incluye abandono de cola, visualización de fichas pendientes y quejas
+ * recibidas.
  */
-
 public class GestionColas {
 
-     /**
-     * Permite a un paciente abandonar la cola sin ser atendido.
-     * Si se encuentra la ficha, se elimina de la cola correspondiente
-     * y se registra una queja.
+    /**
+     * Permite a un paciente abandonar la cola sin ser atendido.Si se encuentra
+     * la ficha, se elimina de la cola correspondiente y se registra una queja.
+     *
+     * @param preferencial
+     * @param regular
+     * @param pila
      */
     public static void abandonarCola(ColaPaciente preferencial, ColaPaciente regular, PilaQuejas pila) {
-        String fichaBuscar = Read.readString("Ingrese el numero de ficha del paciente que desea abandonar la cola (Ej: R3 o P2)");
+        String fichaBuscar = Read.readString("Ingrese el número de ficha del paciente que desea abandonar la cola (Ej: R3 o P2)");
 
-        if (fichaBuscar == null || fichaBuscar.isEmpty()) {
-            return;
+        // Validar cancelación o entrada vacía
+        if (fichaBuscar == null || fichaBuscar.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Operación cancelada o no se ingresó ninguna ficha.");
+            return;  // Salir sin hacer nada
         }
 
-        boolean encontrado = eliminarDeCola(preferencial, fichaBuscar, pila)
-                || eliminarDeCola(regular, fichaBuscar, pila);
+        boolean encontrado = eliminarDeCola(preferencial, fichaBuscar.trim(), pila)
+                || eliminarDeCola(regular, fichaBuscar.trim(), pila);
 
         if (!encontrado) {
-            JOptionPane.showMessageDialog(null, "No se encontro la ficha " + fichaBuscar + " en ninguna cola.");
+            JOptionPane.showMessageDialog(null, "No se encontró la ficha " + fichaBuscar + " en ninguna cola.");
         }
     }
 
@@ -72,8 +78,11 @@ public class GestionColas {
     }
 
     /**
-     * Muestra una lista de todas las fichas pendientes en ambas colas (preferencial y regular).
+     * Muestra una lista de todas las fichas pendientes en ambas colas
+     * (preferencial y regular).
      *
+     * @param preferencial
+     * @param regular
      */
     public static void mostrarFichasPendientes(ColaPaciente preferencial, ColaPaciente regular) {
         StringBuilder sb = new StringBuilder("📋 Fichas Pendientes:\n\n");
@@ -97,9 +106,11 @@ public class GestionColas {
         JOptionPane.showMessageDialog(null, sb.toString());
     }
 
-    
     /**
-     * Muestra todas las quejas registradas por los pacientes que abandonaron la cola.
+     * Muestra todas las quejas registradas por los pacientes que abandonaron la
+     * cola.
+     *
+     * @param pila
      */
     public static void mostrarQuejasRecibidas(PilaQuejas pila) {
         if (pila.estaVacia()) {
@@ -107,7 +118,7 @@ public class GestionColas {
             return;
         }
 
-        NodoQueja aux = pila.getTope(); // Requiere método getTope() en PilaQuejas
+        NodoQueja aux = pila.getTope(); // Requiere metodo getTope() en PilaQuejas
         StringBuilder sb = new StringBuilder("Quejas Recibidas:\n\n");
 
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");

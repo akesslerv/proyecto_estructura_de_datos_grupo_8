@@ -17,6 +17,27 @@ public class ColaAtendidos extends ColaPaciente {
     public ColaAtendidos() {
         super();
     }
+    
+    
+    /**
+     * Sobrescribe el método encolar para evitar mostrar mensajes innecesarios
+     * al agregar un paciente ya atendido a la cola de bitácora.
+     */
+    @Override
+    public void encolar(String prefijo, String nombre, String cedula) {
+        int tamanno = 1 + this.getTamaño();
+        String ficha = prefijo + tamanno;
+
+        NodoCola nodo = new NodoCola(nombre, cedula, ficha);
+        if (this.estaVacia()) {
+            this.setFrente(nodo);
+        } else {
+            this.getUltimo().setSiguiente(nodo);
+        }
+
+        this.setUltimo(nodo);
+        this.setTamaño(tamanno);
+    }
 
     
     /**
