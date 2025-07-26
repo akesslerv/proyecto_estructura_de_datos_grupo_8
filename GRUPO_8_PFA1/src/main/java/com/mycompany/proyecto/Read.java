@@ -76,4 +76,8 @@ public class Read {
         }
         return num;
     }
+
+    static String pedirRazon(String ingrese_la_razón_por_la_que_abandona_la_c) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

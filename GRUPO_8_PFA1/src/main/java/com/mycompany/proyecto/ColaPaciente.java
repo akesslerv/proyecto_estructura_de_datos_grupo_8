@@ -44,6 +44,7 @@ public class ColaPaciente extends ColaBase {
      * @param cedula
      */   
     
+       @Override
     public void encolar(String prefijo, String nombre, String cedula) {
         contadorFichas++;
         String ficha = prefijo + contadorFichas;

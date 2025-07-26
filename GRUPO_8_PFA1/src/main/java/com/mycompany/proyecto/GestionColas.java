@@ -24,15 +24,22 @@ public class GestionColas {
      */
     public static void abandonarCola(ColaPaciente preferencial, ColaPaciente regular, PilaQuejas pila) {
         String fichaBuscar = Read.readString("Ingrese el número de ficha del paciente que desea abandonar la cola (Ej: R3 o P2)");
-
         // Validar cancelación o entrada vacía
         if (fichaBuscar == null || fichaBuscar.trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Operación cancelada o no se ingresó ninguna ficha.");
             return;  // Salir sin hacer nada
         }
 
-        boolean encontrado = eliminarDeCola(preferencial, fichaBuscar.trim(), pila)
-                || eliminarDeCola(regular, fichaBuscar.trim(), pila);
+        // Pedir la razón antes de eliminar
+        String razon = pedirRazon();
+
+        if (razon == null || razon.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar una razón para abandonar la cola.");
+            return;
+        }
+
+        boolean encontrado = eliminarDeCola(preferencial, fichaBuscar.trim(), pila, razon)
+                || eliminarDeCola(regular, fichaBuscar.trim(), pila, razon);
 
         if (!encontrado) {
             JOptionPane.showMessageDialog(null, "No se encontró la ficha " + fichaBuscar + " en ninguna cola.");
@@ -42,10 +49,9 @@ public class GestionColas {
     /**
      * Elimina un paciente de la cola y registra la queja si coincide la ficha.
      */
-    private static boolean eliminarDeCola(ColaPaciente cola, String ficha, PilaQuejas pila) {
+    private static boolean eliminarDeCola(ColaPaciente cola, String ficha, PilaQuejas pila, String razon) {
         NodoCola actual = cola.getFrente();
         NodoCola anterior = null;
-
         while (actual != null) {
             if (actual.getNumeroFicha().equalsIgnoreCase(ficha)) {
                 if (anterior == null) {
@@ -53,27 +59,21 @@ public class GestionColas {
                 } else {
                     anterior.setSiguiente(actual.getSiguiente());
                 }
-
                 if (actual == cola.getUltimo()) {
                     cola.setUltimo(anterior);
                 }
-
                 cola.setTamaño(cola.getTamaño() - 1);
-
                 JOptionPane.showMessageDialog(null,
                         "Ficha #" + actual.getNumeroFicha()
-                        + " con cedula " + actual.getCedula()
+                        + " con cédula " + actual.getCedula()
                         + " abandona la cola sin ser atendido(a).");
-
-                pila.apilar(actual.getNombre(), actual.getCedula(), actual.getNumeroFicha());
-
+                // Guardar la queja con la razón
+                pila.apilar(actual.getNombre(), actual.getCedula(), actual.getNumeroFicha(), razon);
                 return true;
             }
-
             anterior = actual;
             actual = actual.getSiguiente();
         }
-
         return false;
     }
 
@@ -117,20 +117,24 @@ public class GestionColas {
             JOptionPane.showMessageDialog(null, "No hay quejas registradas.");
             return;
         }
-
-        NodoQueja aux = pila.getTope(); // Requiere metodo getTope() en PilaQuejas
+        NodoQueja aux = pila.getTope(); // Método que devuelve el nodo tope
         StringBuilder sb = new StringBuilder("Quejas Recibidas:\n\n");
-
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-
         while (aux != null) {
             sb.append("Ficha #").append(aux.getFicha())
-                    .append(" con cedula ").append(aux.getCedula())
+                    .append(" con cédula ").append(aux.getCedula())
                     .append(" abandona la cola sin ser atendido(a) a la fecha y hora ")
-                    .append(formato.format(aux.getFechaHora())).append("\n\n");
+                    .append(formato.format(aux.getFechaHora())).append("\n")
+                    .append("Razón: ").append(aux.getRazonQueja()).append("\n\n");
             aux = aux.getSiguiente();
         }
-
         JOptionPane.showMessageDialog(null, sb.toString());
+    }
+
+    public static String pedirRazon() {
+        return JOptionPane.showInputDialog(null,
+                "Por favor, indique la razón por la que abandona la cola:",
+                "Razón de Abandono",
+                JOptionPane.QUESTION_MESSAGE);
     }
 }

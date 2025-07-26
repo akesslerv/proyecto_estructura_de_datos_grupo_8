@@ -13,12 +13,17 @@ import javax.swing.JOptionPane;
  */
 public class Proyecto {
 
-    //gestion de colas
-    static ColaPaciente ColaRegular = new ColaPaciente();
-    static ColaPaciente ColaPreferencial = new ColaPaciente();
-    static ColaPaciente ColaAtendidos = new ColaAtendidos();
-    static PilaQuejas PilaQuejas = new PilaQuejas();
-    int ContadorPreferenciales = 0;
+    // Colas de pacientes
+    public static ColaPaciente ColaRegular = new ColaPaciente();
+    public static ColaPaciente ColaPreferencial = new ColaPaciente();
+    public static ColaPaciente ColaAtendidos = new ColaPaciente();
+
+    // Pila de quejas
+    public static PilaQuejas pilaQuejas = new PilaQuejas();
+    public static PilaQuejas PilaQuejas = new PilaQuejas();
+
+    // Estructuras del avance 2
+    public static ListaBitacora bitacoraCitas = new ListaBitacora();
 
     /**
      * Método principal del programa.Muestra el menú principal con opciones para
@@ -29,6 +34,8 @@ public class Proyecto {
     public static void main(String[] args) {
         String[] botonesMenuPrincipal = {
             "Gestionar Llegada de Pacientes",
+            "Bitácora de Citas del Día",
+            "Buscar Citas por Cédula",
             "Ayuda",
             "Salir"
         };
@@ -47,15 +54,18 @@ public class Proyecto {
                 case 0:
                     gestionarPacientes();
                     break;
-
                 case 1:
+                    Paciente.mostrarBitacora();  // Bitácora general
+                    break;
+                case 2:
+                    Paciente.mostrarBitacoraPorCedula();
+                    break;
+                case 3:
                     Ayuda.mostrarAyuda();
                     break;
-
-                case 2:
+                case 4:
                     JOptionPane.showMessageDialog(null, "¡Gracias por usar el Sistema!");
                     System.exit(0);
-                    break;
             }
         }
     }
@@ -69,11 +79,9 @@ public class Proyecto {
         String[] botonesSubMenu = {
             "Seleccionar Ficha",
             "Atender Paciente",
-            "Abandonar Cola",
+            "Abandonar Cola de Pacientes",
             "Mostrar Fichas Pendientes",
             "Mostrar Quejas Recibidas",
-            "Mostrar Bitácora de Atendidos",
-            "Buscar Bitácora por Cédula", // <- Nuevo
             "Regresar"
         };
 
@@ -89,36 +97,18 @@ public class Proyecto {
                     botonesSubMenu[0]);
 
             switch (subMenu) {
-                case 0:
-                    selecionarFicha();
-                    break;
-
-                case 1:
+                case 0 ->
+                    seleccionarFicha();
+                case 1 ->
                     Paciente.atenderPaciente();
-                    break;
-
-                case 2:
+                case 2 ->
                     GestionColas.abandonarCola(ColaPreferencial, ColaRegular, PilaQuejas);
-                    break;
-
-                case 3:
+                case 3 ->
                     GestionColas.mostrarFichasPendientes(ColaPreferencial, ColaRegular);
-                    break;
-
-                case 4:
+                case 4 ->
                     GestionColas.mostrarQuejasRecibidas(PilaQuejas);
-                    break;
-
-                case 5:
-                    Paciente.mostrarBitacora();
-                    break;
-
-                case 6:
-                    Paciente.mostrarBitacoraPorCedula();
-                    break;
-                case 7:
+                case 5 ->
                     bucle = false;
-                    break;
             }
         }
     }
@@ -127,7 +117,7 @@ public class Proyecto {
      * Permite registrar un paciente como regular o preferencial. Solicita
      * nombre y cédula, luego asigna el tipo según opción elegida.
      */
-    public static void selecionarFicha() {
+    public static void seleccionarFicha() {
         String[] botonesSelecFicha = {
             "Paciente Regular",
             "Paciente Preferencial",
@@ -143,30 +133,18 @@ public class Proyecto {
                 botonesSelecFicha,
                 botonesSelecFicha[0]);
 
-        boolean bucle = true;
-        String prefijo;
+        if (subSelecFicha == 2 || subSelecFicha == JOptionPane.CLOSED_OPTION) {
+            return;
+        }
+
         String nombre = Read.readString("Ingrese el nombre del Paciente");
         String cedula = Read.readString("Ingrese la cédula del Paciente");
-        while (bucle) {
-            switch (subSelecFicha) {
-                case 0:
-                    prefijo = "R";
-                    ColaRegular.encolar(prefijo, nombre, cedula);
-                    bucle = false;
-                    break;
 
-                case 1:
-                    prefijo = "P";
-                    ColaPreferencial.encolar(prefijo, nombre, cedula);
-                    bucle = false;
-                    break;
-
-                case 2:
-                    bucle = false;
-                    break;
-            }
+        String prefijo = (subSelecFicha == 1) ? "P" : "R";
+        if (prefijo.equals("P")) {
+            ColaPreferencial.encolar(prefijo, nombre, cedula);
+        } else {
+            ColaRegular.encolar(prefijo, nombre, cedula);
         }
     }
-
 }
-

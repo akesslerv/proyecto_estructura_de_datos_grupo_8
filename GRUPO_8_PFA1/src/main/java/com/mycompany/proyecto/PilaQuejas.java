@@ -22,8 +22,8 @@ public class PilaQuejas {
      * @param cedula
      * @param ficha
      */
-    public void apilar(String nombre, String cedula, String ficha) {
-        NodoQueja nuevo = new NodoQueja(nombre, cedula, ficha);
+    public void apilar(String nombre, String cedula, String ficha, String razon) {
+        NodoQueja nuevo = new NodoQueja(nombre, cedula, ficha, razon);
         nuevo.setSiguiente(tope);
         tope = nuevo;
     }
@@ -63,4 +63,5 @@ public class PilaQuejas {
     public NodoQueja getTope() {
         return tope;
     }
+
 }

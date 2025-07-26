@@ -22,12 +22,12 @@ public class NodoQueja {
     private String razonQueja;
     private NodoQueja siguiente;
 
-    public NodoQueja(String nombre, String cedula, String ficha) {
+    public NodoQueja(String nombre, String cedula, String ficha, String razonQueja) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.ficha = ficha;
         this.fechaHora = Timestamp.valueOf(LocalDateTime.now());
-        this.razonQueja = pedirRazon();
+        this.razonQueja = (razonQueja != null && !razonQueja.trim().isEmpty()) ? razonQueja.trim() : "No especificada";
         this.siguiente = null;
     }
     /**
@@ -62,6 +62,10 @@ public class NodoQueja {
     public String getRazonQueja() {
         return razonQueja;  // Devuelve la razón de la queja
     }
+    
+    public void setRazonQueja(String razonQueja) {
+    this.razonQueja = (razonQueja != null && !razonQueja.trim().isEmpty()) ? razonQueja.trim() : "No especificada";
+}
 
     // Setters
     public void setSiguiente(NodoQueja siguiente) {
@@ -79,15 +83,19 @@ public class NodoQueja {
         return (razon != null && !razon.trim().isEmpty()) ? razon.trim() : "No especificada";
     }
 
-  
     /**
      * Devuelve la fecha y hora del abandono de la cola con formato(dd/MM/yyyy HH:mm:ss).
      * 
+     * @return 
      */
     public String getFechaHoraFormateada() {
         // Formato de fecha: dd/MM/yyyy HH:mm:ss
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         return fechaHora.toLocalDateTime().format(formatter);
     }
+
+  
+
+    
 
 }

@@ -7,6 +7,7 @@ package com.mycompany.proyecto;
 import static com.mycompany.proyecto.Proyecto.ColaAtendidos;
 import static com.mycompany.proyecto.Proyecto.ColaPreferencial;
 import static com.mycompany.proyecto.Proyecto.ColaRegular;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -59,9 +60,7 @@ public class Paciente {
             JOptionPane.showMessageDialog(null, "No hay pacientes en espera.");
             return;
         }
-
         NodoCola nodo = null;
-
         if (contadorPreferenciales < 2 && !ColaPreferencial.estaVacia()) {
             nodo = ColaPreferencial.desencolar();
             contadorPreferenciales++;
@@ -72,22 +71,36 @@ public class Paciente {
             nodo = ColaPreferencial.desencolar();
             contadorPreferenciales = Math.min(contadorPreferenciales + 1, 2);
         }
-
         if (nodo != null) {
             Paciente paciente = new Paciente(nodo.getNombre(), nodo.getCedula(), nodo.getNumeroFicha());
             paciente.mostrarAviso();
             bitacoraAtendidos.add(paciente);
-
             String prefijo = paciente.getNumeroFicha().substring(0, 1);
             ColaAtendidos.encolar(prefijo, paciente.getNombre(), paciente.getCedula());
+
+            // Registrar en la bitácora con timestamps
+            Timestamp fechaLlegada = nodo.getFecha(); // Aquí asumo que NodoCola tiene getFecha()
+            Timestamp fechaAtencion = new Timestamp(System.currentTimeMillis());
+
+            NodoBitacora nuevoRegistro = new NodoBitacora(
+                    paciente.getNumeroFicha(),
+                    fechaLlegada.getTime(), // convierte Timestamp a long
+                    fechaAtencion.getTime(),
+                    paciente.getCedula(),
+                    paciente.getNombre()
+            );
+            Proyecto.bitacoraCitas.insertarOrdenado(nuevoRegistro);
         }
     }
-    
+
+    public static void mostrarBitacoraCompleta() {
+        Proyecto.bitacoraCitas.mostrarBitacora();
+    }
+
     /**
      * Muestra todos los pacientes que han sido atendidos hasta el momento,
      * listados desde el más antiguo hasta el más reciente.
      */
-
     public static void mostrarBitacora() {
         if (bitacoraAtendidos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay pacientes atendidos aún.");
@@ -106,11 +119,10 @@ public class Paciente {
     }
 
     /**
-     * Solicita al usuario una cédula y muestra todos los registros
-     * en la bitácora correspondientes a esa cédula.
-     * Si no se encuentran coincidencias, se notifica al usuario.
+     * Solicita al usuario una cédula y muestra todos los registros en la
+     * bitácora correspondientes a esa cédula. Si no se encuentran
+     * coincidencias, se notifica al usuario.
      */
-    
     public static void mostrarBitacoraPorCedula() {
         if (bitacoraAtendidos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay pacientes atendidos aún.");
@@ -138,5 +150,36 @@ public class Paciente {
         } else {
             JOptionPane.showMessageDialog(null, sb.toString(), "Bitácora del Paciente", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+
+    public static void mostrarFichasPendientes() {
+        StringBuilder sb = new StringBuilder();
+
+        if (ColaPreferencial.estaVacia() && ColaRegular.estaVacia()) {
+            JOptionPane.showMessageDialog(null, "No hay fichas pendientes.");
+            return;
+        }
+
+        sb.append(" Fichas Preferenciales Pendientes:\n\n");
+        NodoCola actual = ColaPreferencial.getFrente();
+        while (actual != null) {
+            sb.append("Ficha: ").append(actual.getNumeroFicha())
+                    .append(" | Nombre: ").append(actual.getNombre())
+                    .append(" | Cédula: ").append(actual.getCedula())
+                    .append(" | Fecha: ").append(actual.getFecha()).append("\n");
+            actual = actual.getSiguiente();
+        }
+
+        sb.append("\n Fichas Regulares Pendientes:\n\n");
+        actual = ColaRegular.getFrente();
+        while (actual != null) {
+            sb.append("Ficha: ").append(actual.getNumeroFicha())
+                    .append(" | Nombre: ").append(actual.getNombre())
+                    .append(" | Cédula: ").append(actual.getCedula())
+                    .append(" | Fecha: ").append(actual.getFecha()).append("\n");
+            actual = actual.getSiguiente();
+        }
+
+        JOptionPane.showMessageDialog(null, sb.toString(), "Fichas Pendientes", JOptionPane.INFORMATION_MESSAGE);
     }
 }
