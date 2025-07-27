@@ -10,6 +10,7 @@ import static com.mycompany.proyecto.Proyecto.ColaRegular;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.time.LocalDate;
 
 /**
  * Clase que representa a un paciente dentro del sistema del hospital. Gestiona
@@ -74,6 +75,8 @@ public class Paciente {
         if (nodo != null) {
             Paciente paciente = new Paciente(nodo.getNombre(), nodo.getCedula(), nodo.getNumeroFicha());
             paciente.mostrarAviso();
+            Timestamp fechaExpediente = new Timestamp(System.currentTimeMillis());
+            Proyecto.expedienteUnico.ingresarExpedienteUnico(Integer.parseInt(paciente.getCedula()), paciente.getNombre(), fechaExpediente);
             bitacoraAtendidos.add(paciente);
             String prefijo = paciente.getNumeroFicha().substring(0, 1);
             ColaAtendidos.encolar(prefijo, paciente.getNombre(), paciente.getCedula());

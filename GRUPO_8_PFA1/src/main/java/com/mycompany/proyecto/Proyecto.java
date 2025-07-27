@@ -24,6 +24,7 @@ public class Proyecto {
 
     // Estructuras del avance 2
     public static BitacoraCitas bitacoraCitas = new BitacoraCitas();
+    public static ListaExpedienteUnico expedienteUnico = new ListaExpedienteUnico();
 
     /**
      * Método principal del programa.Muestra el menú principal con opciones para
@@ -35,6 +36,7 @@ public class Proyecto {
         String[] botonesMenuPrincipal = {
             "Gestionar Llegada de Pacientes",
             "Bitácora de Citas del Día",
+            "Expediente único de Pacientes",
             "Buscar Citas por Cédula",
             "Ayuda",
             "Salir"
@@ -58,12 +60,15 @@ public class Proyecto {
                     bitacoraCitas.mostrarBitacoraSimple(); // Bitácora general
                     break;
                 case 2:
-                    Paciente.mostrarBitacoraPorCedula();
+                    expedienteUnico.mostrarExpedienteUnico();
                     break;
                 case 3:
-                    Ayuda.mostrarAyuda();
+                    Paciente.mostrarBitacoraPorCedula();
                     break;
                 case 4:
+                    Ayuda.mostrarAyuda();
+                    break;
+                case 5:
                     JOptionPane.showMessageDialog(null, "¡Gracias por usar el Sistema!");
                     System.exit(0);
             }
