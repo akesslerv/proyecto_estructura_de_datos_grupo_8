@@ -93,9 +93,4 @@ public class NodoQueja {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         return fechaHora.toLocalDateTime().format(formatter);
     }
-
-  
-
-    
-
 }
