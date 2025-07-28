@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author EmelySellisAlegría
+ * @author Grupo 8
  */
 public class ListaExpedienteUnico {        
     
@@ -231,8 +231,8 @@ public class ListaExpedienteUnico {
         if (tieneExpediente(cedula) == false)
         {
             JOptionPane.showMessageDialog(null, "Paciente "+nombre+" asiste a consulta por primera vez");
-            edad = Integer.parseInt(Read.readString("Ingrese la edad del paciente"));
-            genero = Read.readString("Ingrese el genero del paciente");
+            edad = Integer.parseInt(Auxiliar.readString("Ingrese la edad del paciente"));
+            genero = Auxiliar.readString("Ingrese el genero del paciente");
         }
         else
         {
@@ -256,9 +256,9 @@ public class ListaExpedienteUnico {
         }
                 
         //Se piden los datos necesitados para Historico de Citas y Medicamentos
-        String doctor = Read.readString("Ingrese el nombre del doctor que atiende");
-        String diagnostico = Read.readString("Ingrese el diagnostico del paciente");
-        String medicamentos = Read.readString("Ingrese los medicamentos prescriptos");
+        String doctor = Auxiliar.readString("Ingrese el nombre del doctor que atiende");
+        String diagnostico = Auxiliar.readString("Ingrese el diagnostico del paciente");
+        String medicamentos = Auxiliar.readString("Ingrese los medicamentos prescriptos");
         
         insertarOrdenado(cedula, nombre, edad, genero, fecha);
         
