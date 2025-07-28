@@ -77,12 +77,9 @@ public class Paciente {
             Cola = 0;
         }
         if (nodo != null) {
-            System.out.println("\n\nAtendiendo paciente");
             Paciente paciente = new Paciente(nodo.getNombre(), nodo.getCedula(), nodo.getNumeroFicha());
             paciente.mostrarAviso();
-            System.out.println("paso el aviso");
             Timestamp fechaExpediente = new Timestamp(System.currentTimeMillis());
-            System.out.println("Antes de ingresar a expedienteunico");
            boolean regresar = Proyecto.expedienteUnico.ingresarExpedienteUnico(Integer.parseInt(paciente.getCedula()), paciente.getNombre(), fechaExpediente);
             if (regresar == true){
                 if (Cola == 0) ColaPreferencial.desencolarSinRetorno();

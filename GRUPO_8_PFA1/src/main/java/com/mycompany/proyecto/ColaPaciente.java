@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class ColaPaciente extends ColaBase {
        private int contadorFichas = 0;
     
-
+       
     /**
      * Imprime la información de todos los pacientes en la cola. Muestra una
      * ventana por cada paciente con su nombre, cédula, número de ficha y fecha

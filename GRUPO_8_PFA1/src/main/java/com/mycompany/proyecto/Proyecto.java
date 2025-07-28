@@ -25,6 +25,7 @@ public class Proyecto {
     // Estructuras del avance 2
     public static BitacoraCitas bitacoraCitas = new BitacoraCitas();
     public static ListaExpedienteUnico expedienteUnico = new ListaExpedienteUnico();
+    
 
     /**
      * Método principal del programa.Muestra el menú principal con opciones para
