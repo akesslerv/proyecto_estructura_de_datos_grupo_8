@@ -7,8 +7,14 @@ package com.mycompany.proyecto;
 import java.sql.Timestamp;
 
 /**
- *
- * @author EmelySellisAlegría
+ * Clase que representa un nodo dentro de una lista enlazada para el historial
+ * de medicamentos suministrados a un paciente.
+ * Cada nodo contiene la cédula del paciente, la fecha de registro y los
+ * medicamentos suministrados en ese momento.
+ * 
+ * Esta clase es utilizada para construir una estructura que almacena el
+ * historial de medicamentos por paciente.
+ * 
  */
 public class NodoHistoricoMedicamentos {
     

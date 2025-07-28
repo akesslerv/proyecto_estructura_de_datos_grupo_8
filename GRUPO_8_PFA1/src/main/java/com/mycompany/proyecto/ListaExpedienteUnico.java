@@ -11,15 +11,28 @@ import static com.mycompany.proyecto.Proyecto.seleccionarFicha;
 import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 
+
 /**
- *
- * @author Grupo 8
+ * Clase que representa una lista doblemente enlazada circular de expedientes únicos de pacientes.
+ * 
+ * Cada expediente incluye los datos personales de un paciente y se asocia a su historial
+ * de citas médicas y medicamentos. Los nodos están ordenados ascendentemente por cédula.
+ * Permite la navegación entre pacientes y visualización de sus historiales.
+ * 
+ * además, mantiene una lista global estática para almacenar el historial de citas
+ * y medicamentos, compartida por todos los expedientes.
+ * 
  */
+
 public class ListaExpedienteUnico {        
     NodoExpedienteUnico cabeza;
     public static ListaHistoricoCitas historicoCitas = new ListaHistoricoCitas();
     public static ListaHistoricoMedicamentos historicoMedicamentos = new ListaHistoricoMedicamentos();
-    
+        
+    /**
+     * Inserta un nuevo expediente ordenado por cédula de forma ascendente.
+     *
+     */
     public void insertarOrdenado(int cedula, String nombre, int edad, String genero, Timestamp fecha){
             NodoExpedienteUnico nuevo = new NodoExpedienteUnico(cedula, nombre, edad, genero, fecha);
             
@@ -57,6 +70,10 @@ public class ListaExpedienteUnico {
             
         }
     
+     /**
+     * Verifica si ya existe un expediente con la cédula dada.
+     *
+     */
     public boolean tieneExpediente(int cedula)
     {
         if (cabeza == null)
@@ -77,7 +94,12 @@ public class ListaExpedienteUnico {
         
         return false;
     }    
-    
+        
+    /**
+     * Ingresa un nuevo expediente al sistema. Si el paciente ya existe, muestra su información.
+     * En ambos casos, agrega una nueva cita médica y medicamentos a su historial.
+     *
+     */
     public boolean ingresarExpedienteUnico(int cedula, String nombre, Timestamp fecha)
     {
         int edad = 0;
@@ -129,6 +151,10 @@ public class ListaExpedienteUnico {
         return true;
     }
     
+    /**
+     * Muestra el expediente completo de cada paciente almacenado en la lista.
+     * Incluye los historiales de citas y medicamentos, si existen.
+     */
     public void mostrarExpedienteUnico()
     {
         if (cabeza == null)

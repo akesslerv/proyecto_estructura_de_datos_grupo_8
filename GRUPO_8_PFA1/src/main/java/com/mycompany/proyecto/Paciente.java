@@ -80,15 +80,19 @@ public class Paciente {
             Paciente paciente = new Paciente(nodo.getNombre(), nodo.getCedula(), nodo.getNumeroFicha());
             paciente.mostrarAviso();
             Timestamp fechaExpediente = new Timestamp(System.currentTimeMillis());
-           boolean regresar = Proyecto.expedienteUnico.ingresarExpedienteUnico(Integer.parseInt(paciente.getCedula()), paciente.getNombre(), fechaExpediente);
-            if (regresar == true){
-                if (Cola == 0) ColaPreferencial.desencolarSinRetorno();
-                if (Cola == 1) ColaRegular.desencolarSinRetorno();
-                
+            boolean regresar = Proyecto.expedienteUnico.ingresarExpedienteUnico(Integer.parseInt(paciente.getCedula()), paciente.getNombre(), fechaExpediente);
+            if (regresar == true) {
+                if (Cola == 0) {
+                    ColaPreferencial.desencolarSinRetorno();
+                }
+                if (Cola == 1) {
+                    ColaRegular.desencolarSinRetorno();
+                }
+
                 bitacoraAtendidos.add(paciente);
                 String prefijo = paciente.getNumeroFicha().substring(0, 1);
                 ColaAtendidos.encolar(prefijo, paciente.getNombre(), paciente.getCedula());
-            
+
                 // Aquí registras la bitácora
                 Timestamp fechaLlegada = nodo.getFecha(); // ya es Timestamp
                 Timestamp fechaAtencion = new Timestamp(System.currentTimeMillis());
@@ -104,7 +108,7 @@ public class Paciente {
             }
         }
     }
-    
+
     /**
      * Muestra todos los pacientes que han sido atendidos hasta el momento,
      * listados desde el más antiguo hasta el más reciente.
@@ -160,6 +164,10 @@ public class Paciente {
         }
     }
 
+    /**
+     * Muestra todas las fichas pendientes en las colas preferencial y regular.
+     * Presenta los datos en orden de llegada.
+     */
     public static void mostrarFichasPendientes() {
         StringBuilder sb = new StringBuilder();
 
@@ -190,4 +198,4 @@ public class Paciente {
 
         JOptionPane.showMessageDialog(null, sb.toString(), "Fichas Pendientes", JOptionPane.INFORMATION_MESSAGE);
     }
- }
+}

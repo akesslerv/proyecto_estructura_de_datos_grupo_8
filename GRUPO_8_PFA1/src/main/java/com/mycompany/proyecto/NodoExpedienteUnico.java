@@ -6,9 +6,14 @@ package com.mycompany.proyecto;
 import java.sql.Timestamp;
 
 /**
- *
- * @author EmelySellisAlegría
- */
+ * Clase que representa un nodo en una lista doblemente enlazada circular 
+ * utilizada para gestionar el expediente único de un paciente en el sistema hospitalario.
+ * 
+ * Cada nodo contiene los datos personales del paciente y la fecha de creación 
+ * del expediente, además de referencias al nodo siguiente y anterior.
+ * 
+ * Esta estructura permite navegar en ambos sentidos de forma circular.
+ *  */
 public class NodoExpedienteUnico {
     
     private int cedula, edad;

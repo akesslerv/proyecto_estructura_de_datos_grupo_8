@@ -12,7 +12,11 @@ public class BitacoraCitas {
         cabeza = null;
     }
 
-    // Inserta el nodo ordenado por cédula (alfabéticamente)
+    /**
+     * Inserta un nuevo nodo en la lista enlazada de forma ordenada según la
+     * cédula. La lista se mantiene ordenada alfabéticamente por la cédula.
+     *
+     */
     public void insertarOrdenado(NodoBitacora nuevo) {
         if (cabeza == null || nuevo.getCedula().compareTo(cabeza.getCedula()) < 0) {
             // Insertar al inicio

@@ -6,10 +6,15 @@ package com.mycompany.proyecto;
 
 import java.sql.Timestamp;
 
+
 /**
- *
- * @author EmelySellisAlegría
+ * La clase NodoHistoricoCitas representa un nodo de una lista enlazada simple
+ * que almacena el historial de citas médicas de un paciente.
+ * Contiene información básica como cédula, fecha de la cita, nombre del doctor
+ * y el diagnóstico.
+ * 
  */
+
 public class NodoHistoricoCitas {
     
     private int cedula;
