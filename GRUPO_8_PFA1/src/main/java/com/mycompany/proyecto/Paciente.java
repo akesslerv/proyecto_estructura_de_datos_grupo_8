@@ -62,38 +62,49 @@ public class Paciente {
             return;
         }
         NodoCola nodo = null;
+        int Cola = -1;
         if (contadorPreferenciales < 2 && !ColaPreferencial.estaVacia()) {
-            nodo = ColaPreferencial.desencolar();
+            nodo = ColaPreferencial.getFrente();
             contadorPreferenciales++;
+            Cola = 0;
         } else if (!ColaRegular.estaVacia()) {
-            nodo = ColaRegular.desencolar();
+            nodo = ColaRegular.getFrente();
             contadorPreferenciales = 0;
+            Cola = 1;
         } else if (!ColaPreferencial.estaVacia()) {
-            nodo = ColaPreferencial.desencolar();
+            nodo = ColaPreferencial.getFrente();
             contadorPreferenciales = Math.min(contadorPreferenciales + 1, 2);
+            Cola = 0;
         }
         if (nodo != null) {
+            System.out.println("\n\nAtendiendo paciente");
             Paciente paciente = new Paciente(nodo.getNombre(), nodo.getCedula(), nodo.getNumeroFicha());
             paciente.mostrarAviso();
+            System.out.println("paso el aviso");
             Timestamp fechaExpediente = new Timestamp(System.currentTimeMillis());
-            Proyecto.expedienteUnico.ingresarExpedienteUnico(Integer.parseInt(paciente.getCedula()), paciente.getNombre(), fechaExpediente);
-            bitacoraAtendidos.add(paciente);
-            String prefijo = paciente.getNumeroFicha().substring(0, 1);
-            ColaAtendidos.encolar(prefijo, paciente.getNombre(), paciente.getCedula());
+            System.out.println("Antes de ingresar a expedienteunico");
+           boolean regresar = Proyecto.expedienteUnico.ingresarExpedienteUnico(Integer.parseInt(paciente.getCedula()), paciente.getNombre(), fechaExpediente);
+            if (regresar == true){
+                if (Cola == 0) ColaPreferencial.desencolarSinRetorno();
+                if (Cola == 1) ColaRegular.desencolarSinRetorno();
+                
+                bitacoraAtendidos.add(paciente);
+                String prefijo = paciente.getNumeroFicha().substring(0, 1);
+                ColaAtendidos.encolar(prefijo, paciente.getNombre(), paciente.getCedula());
+            
+                // Aquí registras la bitácora
+                Timestamp fechaLlegada = nodo.getFecha(); // ya es Timestamp
+                Timestamp fechaAtencion = new Timestamp(System.currentTimeMillis());
 
-            // Aquí registras la bitácora
-            Timestamp fechaLlegada = nodo.getFecha(); // ya es Timestamp
-            Timestamp fechaAtencion = new Timestamp(System.currentTimeMillis());
-
-            NodoBitacora nodoBitacora = new NodoBitacora(
-                    paciente.getNumeroFicha(),
-                    fechaLlegada,
-                    fechaAtencion,
-                    paciente.getCedula(),
-                    paciente.getNombre()
-            );
-
-            Proyecto.bitacoraCitas.insertarOrdenado(nodoBitacora);
+                NodoBitacora nodoBitacora = new NodoBitacora(
+                        paciente.getNumeroFicha(),
+                        fechaLlegada,
+                        fechaAtencion,
+                        paciente.getCedula(),
+                        paciente.getNombre()
+                );
+                Proyecto.bitacoraCitas.insertarOrdenado(nodoBitacora);
+            }
         }
     }
     
@@ -182,4 +193,4 @@ public class Paciente {
 
         JOptionPane.showMessageDialog(null, sb.toString(), "Fichas Pendientes", JOptionPane.INFORMATION_MESSAGE);
     }
-}
+ }

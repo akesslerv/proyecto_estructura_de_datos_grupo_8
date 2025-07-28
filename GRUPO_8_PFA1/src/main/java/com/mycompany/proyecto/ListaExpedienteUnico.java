@@ -218,24 +218,26 @@ public class ListaExpedienteUnico {
                 return true;
             }
             actual = actual.siguiente;            
-        } while (actual != cabeza || actual != null);
+        } while (actual != cabeza ); //|| actual != null
         
         return false;
     }    
     
-    public void ingresarExpedienteUnico(int cedula, String nombre, Timestamp fecha)
+    public boolean ingresarExpedienteUnico(int cedula, String nombre, Timestamp fecha)
     {
         int edad = 0;
         String genero = null;
-        
+        System.out.println("Revisa en tiene expediente = false");
         if (tieneExpediente(cedula) == false)
-        {
+        {   System.out.println("entro en el if");
             JOptionPane.showMessageDialog(null, "Paciente "+nombre+" asiste a consulta por primera vez");
-            edad = Integer.parseInt(Auxiliar.readString("Ingrese la edad del paciente"));
+            edad = Auxiliar.readIntNull("Ingrese la edad del paciente");
+            if (edad == -1) return false;
             genero = Auxiliar.readString("Ingrese el genero del paciente");
+            if (genero == null) return false;
         }
         else
-        {
+        {System.out.println("entro en el else");
             NodoExpedienteUnico actual = cabeza;
             while (actual != null) 
             {
@@ -248,7 +250,7 @@ public class ListaExpedienteUnico {
                     + " Género: " + actual.getGenero());
                     edad = actual.getEdad();
                     genero = actual.getGenero();
-                    actual = null;
+                    break; //actual = null; importante
                 }
                 
                 actual = actual.getSiguiente();
@@ -257,8 +259,11 @@ public class ListaExpedienteUnico {
                 
         //Se piden los datos necesitados para Historico de Citas y Medicamentos
         String doctor = Auxiliar.readString("Ingrese el nombre del doctor que atiende");
+        if (doctor == null) return false;
         String diagnostico = Auxiliar.readString("Ingrese el diagnostico del paciente");
+        if (diagnostico == null) return false;
         String medicamentos = Auxiliar.readString("Ingrese los medicamentos prescriptos");
+        if (medicamentos == null) return false;
         
         insertarOrdenado(cedula, nombre, edad, genero, fecha);
         
@@ -269,6 +274,7 @@ public class ListaExpedienteUnico {
         historicoMedicamentos.insertarOrdenado(cedula, fecha, medicamentos);
         
         JOptionPane.showMessageDialog(null,"Expediente de usuario, ingresado correctamente");
+        return true;
     }
     
     public void menuExpedienteUnico(int cedula, Boolean dato)

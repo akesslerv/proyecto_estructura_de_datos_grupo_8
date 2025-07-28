@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
  * el registro y visualización de pacientes.
  */
 public class ColaPaciente extends ColaBase {
-    
        private int contadorFichas = 0;
     
 
@@ -58,7 +57,22 @@ public class ColaPaciente extends ColaBase {
         this.setTamaño(this.getTamaño() + 1);
     }
     
-    
+    /**
+     * Elimina el primer nodo de la cola sin retonar el nodo eliminado.
+     */
+    public void desencolarSinRetorno() {
+        if (getFrente() == null) {
+            return;
+        }
+        NodoCola nodoDesencolado = getFrente();
+        setFrente(getFrente().getSiguiente());
+        int tamanno = getTamaño();
+        tamanno --;
+        if (getFrente() == null) {
+            setUltimo(null);
+        }
+        nodoDesencolado.setSiguiente(null);
+    }
 
 }
 

@@ -23,7 +23,7 @@ public class GestionColas {
      * @param pila
      */
     public static void abandonarCola(ColaPaciente preferencial, ColaPaciente regular, PilaQuejas pila) {
-        String fichaBuscar = Read.readString("Ingrese el número de ficha del paciente que desea abandonar la cola (Ej: R3 o P2)");
+        String fichaBuscar = Auxiliar.readString("Ingrese el número de ficha del paciente que desea abandonar la cola (Ej: R3 o P2)");
         // Validar cancelación o entrada vacía
         if (fichaBuscar == null || fichaBuscar.trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Operación cancelada o no se ingresó ninguna ficha.");
