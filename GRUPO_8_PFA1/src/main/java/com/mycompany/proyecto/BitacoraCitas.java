@@ -1,7 +1,6 @@
 // ListaBitacora.java
 package com.mycompany.proyecto;
 
-import static com.mycompany.proyecto.Proyecto.bitacoraCitas;
 import javax.swing.JOptionPane;
 
 public class BitacoraCitas {
@@ -17,18 +16,16 @@ public class BitacoraCitas {
      * cédula. La lista se mantiene ordenada alfabéticamente por la cédula.
      *
      */
-    public void insertarOrdenado(NodoBitacora nuevo) {
+    public void insertar(NodoBitacora nuevo) {
         if (cabeza == null || nuevo.getCedula().compareTo(cabeza.getCedula()) < 0) {
             // Insertar al inicio
-            nuevo.setSiguiente(cabeza);
             cabeza = nuevo;
         } else {
             NodoBitacora actual = cabeza;
-            while (actual.getSiguiente() != null
-                    && actual.getSiguiente().getCedula().compareTo(nuevo.getCedula()) < 0) {
+            while (actual.getSiguiente() != null) {
                 actual = actual.getSiguiente();
             }
-            nuevo.setSiguiente(actual.getSiguiente());
+            // Inserta al final
             actual.setSiguiente(nuevo);
         }
     }

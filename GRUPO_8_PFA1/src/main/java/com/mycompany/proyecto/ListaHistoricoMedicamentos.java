@@ -20,8 +20,6 @@ public class ListaHistoricoMedicamentos {
     NodoHistoricoMedicamentos ultimo;
 
     public ListaHistoricoMedicamentos() {
-        this.cabeza = cabeza;
-        this.ultimo = ultimo;
     }
 
     /**

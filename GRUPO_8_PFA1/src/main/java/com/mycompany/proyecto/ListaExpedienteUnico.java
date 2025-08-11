@@ -4,10 +4,6 @@
  */
 package com.mycompany.proyecto;
 
-import static com.mycompany.proyecto.Proyecto.ColaPreferencial;
-import static com.mycompany.proyecto.Proyecto.ColaRegular;
-import static com.mycompany.proyecto.Proyecto.PilaQuejas;
-import static com.mycompany.proyecto.Proyecto.seleccionarFicha;
 import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 
@@ -24,7 +20,7 @@ import javax.swing.JOptionPane;
  * 
  */
 
-public class ListaExpedienteUnico {        
+public class ListaExpedienteUnico extends ListaDobleCircular{        
     NodoExpedienteUnico cabeza;
     public static ListaHistoricoCitas historicoCitas = new ListaHistoricoCitas();
     public static ListaHistoricoMedicamentos historicoMedicamentos = new ListaHistoricoMedicamentos();
@@ -194,9 +190,15 @@ public class ListaExpedienteUnico {
 
             switch (subMenu) {
                 case 0:
+                    if (actual == actual.getAnterior()){
+                        JOptionPane.showMessageDialog(null, "No hay más expedientes de pacientes");
+                    }
                     actual = actual.getAnterior();
                     break;
                 case 1:
+                    if (actual == actual.getSiguiente()){
+                        JOptionPane.showMessageDialog(null, "No hay más expedientes de pacientes");
+                    }
                     actual = actual.getSiguiente();
                     break;
                 case 2:

@@ -104,7 +104,7 @@ public class Paciente {
                         paciente.getCedula(),
                         paciente.getNombre()
                 );
-                Proyecto.bitacoraCitas.insertarOrdenado(nodoBitacora);
+                Proyecto.bitacoraCitas.insertar(nodoBitacora);
             }
         }
     }
