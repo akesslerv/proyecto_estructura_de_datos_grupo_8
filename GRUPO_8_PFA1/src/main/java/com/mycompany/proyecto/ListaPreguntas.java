@@ -23,4 +23,5 @@ public class ListaPreguntas {
     }
     
     //Metodos
+    //Aqui van los metodos de la lista de preguntas
 }

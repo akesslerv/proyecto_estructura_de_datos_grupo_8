@@ -11,26 +11,37 @@ package com.mycompany.proyecto;
 public class NodoArbol {
     
     //Atributos
-    private int dato;
+    private String codigo;
+    private String nombre;
     private NodoArbol nodoDer;
     private NodoArbol nodoIzq;
+    ListaPreguntas listaPreguntas;
     
     //Constructores
     public NodoArbol() {
     }
     
-    public NodoArbol(int dato) {
-        this.dato = dato;
-        this.nodoIzq = this.nodoDer = null;
+    public NodoArbol(String codigo, String nombre) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.listaPreguntas = new ListaPreguntas();
     }
     
     //Getters & Setters
-    public int getDato() {
-        return dato;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setDato(int dato) {
-        this.dato = dato;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public NodoArbol getNodoDer() {
@@ -47,5 +58,19 @@ public class NodoArbol {
 
     public void setNodoIzq(NodoArbol nodoIzq) {
         this.nodoIzq = nodoIzq;
+    }
+
+    public ListaPreguntas getListaPreguntas() {
+        return listaPreguntas;
+    }
+
+    public void setListaPreguntas(ListaPreguntas listaPreguntas) {
+        this.listaPreguntas = listaPreguntas;
+    }
+    
+    //Objeto en formato String
+    @Override
+    public String toString() {
+        return codigo + " - " + nombre;
     }
 }
