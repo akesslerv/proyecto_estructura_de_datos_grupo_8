@@ -8,9 +8,11 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author JousteenCordero(jcordero60060@ufide.ac.cr)
+ * @author Grupo 8
  */
 public class Chatbot {
+    
+    public static ArbolBinario arbol = new ArbolBinario();
     
     /**
      * Muestra el submenú del chatbot para seleccionar entre ver el chatbot como
@@ -19,31 +21,44 @@ public class Chatbot {
      */
     public static void menuChatbot() {
         
-        String[] botonesSubMenu = {
+        String[] subMenuChatbot = {
             "Ver Chatbot (Usuarios)",
-            "Mantenimiento del Chatbot (Personal Administrativo)",
+            "Mantenimiento Chatbot (Personal Administrativo)",
             "Regresar"
         };
-
+        
         boolean bucle = true;
-        while (bucle) {
-            int subMenu = JOptionPane.showOptionDialog(null,
-                    "Seleccione una Opción",
-                    "Hospital Su Salud",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.INFORMATION_MESSAGE,
-                    null,
-                    botonesSubMenu,
-                    botonesSubMenu[0]);
+        while (bucle){
+            int selecOpcion = JOptionPane.showOptionDialog(null,
+                "Seleccione una Opcion",
+                "Hospital su salud",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                subMenuChatbot,
+                subMenuChatbot[0]);
 
-            switch (subMenu) {
-                case 0 ->
-                    bucle = false;  //CAMBIAR CUANDO SE IMPLEMENTE LA OPCION VER CHATBOT
-                case 1 ->
-                    bucle = false;  //CAMBIAR CUANDO SE IMPLEMENTE LA OPCION MANTENIMIENTO CHATBOT
-                case 2 ->
+            switch (selecOpcion) {
+                case 0:
+                    verChatbot();
+                    break;
+                case 1:
+                    mantenimientoChatbot();
+                    break;
+                case 2:
+                    JOptionPane.showMessageDialog(null, "Gracias por usar el Chatbot. ¡Hasta luego!");
                     bucle = false;
             }
         }
+    }
+
+    private static void verChatbot() {
+        JOptionPane.showMessageDialog(null, "¡Bienvenido al Chatbot de Preguntas Frecuentes!");
+        // codigo
+    }
+
+    private static void mantenimientoChatbot() {
+        JOptionPane.showMessageDialog(null, "¡Bienvenido a Mantenimiento del Chatbot de Preguntas Frecuentes!");
+        // codigo
     }
 }
