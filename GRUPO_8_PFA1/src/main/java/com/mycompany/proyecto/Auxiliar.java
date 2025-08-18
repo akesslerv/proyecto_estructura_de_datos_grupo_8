@@ -43,6 +43,38 @@ public class Auxiliar {
             }
         }
     }
+    
+    public static String readCedula(String mensaje) {
+        while (true) {
+            String input = JOptionPane.showInputDialog(null, mensaje);
+
+            if (input == null) {
+                // Usuario presionó Cancelar
+                return null;
+            }
+            
+                // Valida que la cedula solo contenga números
+            if (!input.trim().matches("\\d+")){
+                JOptionPane.showMessageDialog(null,
+                "La cédula unicamente puede contener números");
+                return input.trim();
+
+            } else if (input.trim().isEmpty()) {
+                int resp = JOptionPane.showConfirmDialog(null,
+                        "El campo no puede estar vacío. ¿Desea intentarlo de nuevo?",
+                        "Campo vacío", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE);
+
+                if (resp == JOptionPane.NO_OPTION || resp == JOptionPane.CLOSED_OPTION) {
+                    return null;
+                }
+
+                // Si elige "Sí", se vuelve a pedir input
+            } else {
+                return input.trim();
+            }
+        }
+    }
 
     /**
      * Solicita al usuario ingresar un número entero mediante un cuadro de

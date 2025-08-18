@@ -144,7 +144,9 @@ public class Proyecto {
         }
 
         String nombre = Auxiliar.readString("Ingrese el nombre del Paciente");
-        String cedula = Auxiliar.readString("Ingrese la cédula del Paciente");
+        if (nombre == null) return;
+        String cedula = Auxiliar.readCedula("Ingrese la cédula del Paciente");
+        if (cedula == null) return;
 
         String prefijo = (subSelecFicha == 1) ? "P" : "R";
         if (prefijo.equals("P")) {
