@@ -71,8 +71,8 @@ public class Proyecto {
                     mostrarAyuda();
                     break;
                 case 5:
-                    JOptionPane.showMessageDialog(null, "¡Chatbot!");
-                    System.exit(0);
+                    Chatbot.menuChatbot();
+                    break;
                 case 6:
                     JOptionPane.showMessageDialog(null, "¡Gracias por usar el Sistema!");
                     System.exit(0);
