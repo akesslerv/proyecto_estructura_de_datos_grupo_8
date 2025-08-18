@@ -40,6 +40,7 @@ public class Proyecto {
             "Expediente único de Pacientes",
             "Buscar Citas por Cédula",
             "Ayuda",
+            "ChatBot",
             "Salir"
         };
 
@@ -70,6 +71,9 @@ public class Proyecto {
                     mostrarAyuda();
                     break;
                 case 5:
+                    JOptionPane.showMessageDialog(null, "¡Chatbot!");
+                    System.exit(0);
+                case 6:
                     JOptionPane.showMessageDialog(null, "¡Gracias por usar el Sistema!");
                     System.exit(0);
             }
