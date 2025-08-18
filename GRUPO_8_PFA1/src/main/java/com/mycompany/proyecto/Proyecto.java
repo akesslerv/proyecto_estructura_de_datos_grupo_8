@@ -183,7 +183,7 @@ public class Proyecto {
 
                 Nota: La atención prioriza la cola preferencial sobre la regular.
                         
-                Versión: 1.0.0
+                Versión: 3.1.0
                 
                 Autores:
                 • Jousteen José Cordero Valerio
