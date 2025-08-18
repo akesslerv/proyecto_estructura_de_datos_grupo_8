@@ -38,9 +38,9 @@ public class Chatbot {
 
             switch (subMenu) {
                 case 0 ->
-                    bucle = false;
+                    bucle = false;  //CAMBIAR CUANDO SE IMPLEMENTE LA OPCION VER CHATBOT
                 case 1 ->
-                    bucle = false;
+                    bucle = false;  //CAMBIAR CUANDO SE IMPLEMENTE LA OPCION MANTENIMIENTO CHATBOT
                 case 2 ->
                     bucle = false;
             }
