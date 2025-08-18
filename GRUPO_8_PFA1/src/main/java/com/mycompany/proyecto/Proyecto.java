@@ -26,6 +26,8 @@ public class Proyecto {
     public static BitacoraCitas bitacoraCitas = new BitacoraCitas();
     public static ListaExpedienteUnico expedienteUnico = new ListaExpedienteUnico();
     
+    public static ArbolBinario arbol = new ArbolBinario();
+    
 
     /**
      * Método principal del programa.Muestra el menú principal con opciones para
@@ -34,6 +36,7 @@ public class Proyecto {
      * @param args
      */
     public static void main(String[] args) {
+        arbol.setRaiz(ArbolBinario.precargarArbol());
         String[] botonesMenuPrincipal = {
             "Gestionar Llegada de Pacientes",
             "Bitácora de Citas del Día",
