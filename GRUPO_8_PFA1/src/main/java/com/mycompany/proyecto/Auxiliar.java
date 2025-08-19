@@ -3,6 +3,7 @@ package com.mycompany.proyecto;
 import javax.swing.JOptionPane;
 
 /**
+ * @author GRUPO 8
  * Clase para realizar lecturas de datos desde cuadros de diálogo. Contiene
  * métodos para leer cadenas, enteros y números decimales usando JOptionPane.
  */
