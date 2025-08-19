@@ -7,6 +7,7 @@ package com.mycompany.proyecto;
 import java.sql.Timestamp;
 
 /**
+ * @author GRUPO 8
  * Clase que representa una lista circular simple de historial de citas médicas.
  * Cada nodo contiene información sobre la cédula del paciente, la fecha de la
  * cita, el doctor tratante y el diagnóstico emitido.
