@@ -6,6 +6,7 @@ package com.mycompany.proyecto;
 import java.sql.Timestamp;
 
 /**
+ * @author GRUPO 8
  * Clase que representa un nodo en una lista doblemente enlazada circular 
  * utilizada para gestionar el expediente único de un paciente en el sistema hospitalario.
  * 
