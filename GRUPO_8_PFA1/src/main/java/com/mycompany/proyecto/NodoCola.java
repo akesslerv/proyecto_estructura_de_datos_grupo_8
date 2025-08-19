@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 /**
+ * @author GRUPO 8
  * Clase que representa un nodo en una cola de pacientes. Contiene información
  * personal y de control como el nombre, cédula, número de ficha, fecha de
  * creación y enlace al siguiente nodo.
