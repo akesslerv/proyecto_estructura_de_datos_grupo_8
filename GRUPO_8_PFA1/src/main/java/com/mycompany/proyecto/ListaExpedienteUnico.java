@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 
 /**
+ * @author GRUPO 8
  * Clase que representa una lista doblemente enlazada circular de expedientes únicos de pacientes.
  * 
  * Cada expediente incluye los datos personales de un paciente y se asocia a su historial
