@@ -7,6 +7,7 @@ package com.mycompany.proyecto;
 import java.sql.Timestamp;
 
 /**
+ * @author GRUPO 8
  * Clase que representa una lista circular enlazada de históricos de
  * medicamentos. Cada nodo contiene información sobre la cédula del paciente, la
  * fecha de prescripción y los medicamentos asignados.
