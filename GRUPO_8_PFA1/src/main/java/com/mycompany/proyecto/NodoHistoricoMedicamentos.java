@@ -7,6 +7,7 @@ package com.mycompany.proyecto;
 import java.sql.Timestamp;
 
 /**
+ * @author GRUPO 8
  * Clase que representa un nodo dentro de una lista enlazada para el historial
  * de medicamentos suministrados a un paciente.
  * Cada nodo contiene la cédula del paciente, la fecha de registro y los
