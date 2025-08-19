@@ -7,6 +7,7 @@ package com.mycompany.proyecto;
 import javax.swing.JOptionPane;
 
 /**
+ * @author GRUPO 8
  * Clase que representa una cola de pacientes. Hereda de {ColaBase} y gestiona
  * el registro y visualización de pacientes.
  */
