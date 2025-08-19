@@ -6,7 +6,7 @@ package com.mycompany.proyecto;
 
 /**
  *
- * @author EQUIPO
+ * @author GRUPO 8
  */
 public class NodoDoble {
     private int identificador;
